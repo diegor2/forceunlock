@@ -46,9 +46,12 @@ public class UnlockService extends Service implements ProximityListener {
 		return super.onUnbind(intent);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onProximityChanged(long time) {
-		// TODO Auto-generated method stub
-
+		if (ScreenReceiver.wasScreenOn) {
+			LockScreen lock = LockScreen.getInstance(this);
+			lock.getmLock().disableKeyguard();
+		}
 	}
 }
