@@ -4,5 +4,6 @@
     <string name="app_name">ForceUnlock</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="unlock_service">UnlockService</string>
 
 </resources>
