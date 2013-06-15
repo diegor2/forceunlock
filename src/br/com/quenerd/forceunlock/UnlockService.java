@@ -24,6 +24,7 @@ public class UnlockService extends Service implements ProximityListener {
 
 		mSensor = new ProximitySensor(this);
 		mSensor.setListener(this);
+		mSensor.start();
 		return Service.START_NOT_STICKY;
 	}
 
@@ -45,9 +46,13 @@ public class UnlockService extends Service implements ProximityListener {
 		return super.onUnbind(intent);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onProximity(ProximityGesture gesture) {
-		// TODO Auto-generated method stub
+		if(ScreenReceiver.wasScreenOn){
+			LockScreen lock = LockScreen.getInstance(this);
+			lock.getmLock().disableKeyguard();
+		}
 
 	}
 }

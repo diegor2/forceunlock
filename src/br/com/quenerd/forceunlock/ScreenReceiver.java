@@ -12,12 +12,15 @@ public class ScreenReceiver extends BroadcastReceiver {
     
     // THANKS JASON
     public static boolean wasScreenOn = true;
+	@SuppressWarnings("deprecation")
 	@Override
     public void onReceive(Context context, Intent intent) {
 		  
 		 if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
             // DO WHATEVER YOU NEED TO DO HERE
-	        	Log.d("la", "Lockkkkkkk");
+			 LockScreen lock = LockScreen.getInstance(context);
+			 lock.getmLock().reenableKeyguard();
+			 Log.d("la", "Lockkkkkkk");
             wasScreenOn = false;
         } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
             // AND DO WHATEVER YOU NEED TO DO HERE
