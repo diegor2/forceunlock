@@ -12,6 +12,7 @@ public class ProximitySensor implements SensorEventListener {
 	private static final String TAG = ProximitySensor.class.getSimpleName();
 	private SensorManager mSensorManager;
 	private Sensor mProximity;
+	private ProximityListener mListener;
 
 	public ProximitySensor(Context context) {
 		mSensorManager = (SensorManager) context
@@ -28,6 +29,10 @@ public class ProximitySensor implements SensorEventListener {
 		mSensorManager.unregisterListener(this);
 	}
 
+	public void setListener(ProximityListener l) {
+		mListener = l;
+	}
+
 	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
 	}
@@ -36,5 +41,6 @@ public class ProximitySensor implements SensorEventListener {
 	public void onSensorChanged(SensorEvent event) {
 		float sensor = event.values[0];
 		Log.d(TAG, Float.toString(sensor) + " " + System.currentTimeMillis());
+		mListener.onProximity(ProximityGesture.LONG);
 	}
 }

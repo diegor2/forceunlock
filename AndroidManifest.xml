@@ -8,7 +8,9 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
     
+     <uses-permission android:name="android.permission.WAKE_LOCK" />
      <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+     <uses-permission android:name="android.permission.REENABLE_KEYGUARD" />
 
     <application
         android:allowBackup="true"
