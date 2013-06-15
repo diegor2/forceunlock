@@ -40,7 +40,8 @@ public class ProximitySensor implements SensorEventListener {
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		float sensor = event.values[0];
-		Log.d(TAG, Float.toString(sensor) + " " + System.currentTimeMillis());
-		mListener.onProximity(ProximityGesture.LONG);
+		long time = System.currentTimeMillis();
+		mListener.onProximityChanged(time);
+		Log.d(TAG, Float.toString(sensor) + " " + time);
 	}
 }

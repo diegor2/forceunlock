@@ -2,6 +2,6 @@ package br.com.quenerd.forceunlock;
 
 public interface ProximityListener {
 
-	public void onProximity(ProximityGesture gesture);
+	public void onProximityChanged(long time);
 
 }

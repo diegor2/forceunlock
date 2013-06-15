@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener,
+		ProximityListener {
 
 	private PasswordManager mPasswordManager;
 	private View mStart;
 	private View mStop;
+	private ProximitySensor mSensor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 		bindViews();
 		bindEvents();
+		startSensor();
+	}
+
+	private void startSensor() {
+		mSensor = new ProximitySensor(this);
+		mSensor.setListener(this);
+		mSensor.start();
 	}
 
 	private void bindViews() {
@@ -56,4 +65,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		}
 	}
 
+	@Override
+	public void onProximityChanged(long time) {
+		if (mPasswordManager.isRecording()) {
+			mPasswordManager.addGesture(time);
+		}
+	}
 }
